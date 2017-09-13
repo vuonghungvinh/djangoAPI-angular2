@@ -1,0 +1,139 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Đăng kí</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" (ngSubmit)="registerForm(f.value)" #f="ngForm">
+                    <div *ngIf="errors" class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" (click)="CloseMessage()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <p [innerHTML]="errors"></p>
+                    </div>
+                        <div class="form-group">
+                            <label for="firstname" class="col-md-4 control-label">Họ</label>
+
+                            <div class="col-md-6">
+                                <input id="firstname" type="text" class="form-control" required #firstname="ngModel" ngModel name="firstname">
+                                <div *ngIf="firstname.errors  && (firstname.dirty || firstname.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!firstname.errors.required">
+                                        Bạn chưa nhập họ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-md-4 control-label">Tên</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" required #name="ngModel" ngModel name="name">
+                                <div *ngIf="name.errors  && (name.dirty || name.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!name.errors.required">
+                                        Bạn chưa nhập tên.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="col-md-4 control-label">Số điện thoại</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control" pattern = "^([0][1-9]{2}[0-9]{7,8})*([0][1-9]{3}[0-9]{6,7})$" maxlength="11" name="phone" required #phone="ngModel" ngModel>
+                                <div *ngIf="phone.errors && (phone.dirty || phone.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!phone.errors.required">
+                                        Bạn chưa nhập số điện thoại.
+                                    </div>
+                                    <div [hidden]="!phone.errors.pattern">
+                                        Số điện thoại bạn nhập không đúng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Địa chỉ E-Mail</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" pattern = "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" name="email" required #email="ngModel" ngModel>
+                                <div *ngIf="email.errors && (email.dirty || email.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!email.errors.required">
+                                        Bạn chưa nhập địa chỉ email.
+                                    </div>
+                                    <div [hidden]="!email.errors.pattern">
+                                        Địa chỉ email bạn nhập không đúng.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address" class="col-md-4 control-label">Địa chỉ</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" required #address="ngModel" ngModel name="address">
+                                <div *ngIf="address.errors  && (address.dirty || address.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!address.errors.required">
+                                        Bạn chưa nhập địa chỉ.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" class="col-md-4 control-label">Ảnh đại diện</label>
+
+                            <div class="col-md-6">
+                                <input id="image" type="file" class="form-control" #image="ngModel" ngModel name="image" accept="image/gif, image/jpeg, image/png" (change)="getFiles($event)">
+                                <div *ngIf="image.errors  && (image.dirty || image.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!image.errors.required">
+                                        Bạn chưa chọn ảnh đại diện.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="col-md-4 control-label">Mật khẩu</label>
+
+                            <div class="col-md-6">
+                                <input id="password" minlength="1" type="password" class="form-control" name="password" required #password="ngModel" ngModel>
+                                <div *ngIf="password.errors && (password.dirty || password.touched)" class="text text-danger text-left">
+                                    <div [hidden]="!password.errors.required">
+                                        Bạn chưa nhập mật khẩu.
+                                    </div>
+                                    <div [hidden]="!password.errors.minlength">
+                                        Mật khẩu có ít nhất 6 kí tự.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Xác nhận mật khẩu</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" required name="password_confirmation" #password_confirmation="ngModel" ngModel [pattern]="password.value">
+                                <div *ngIf="password_confirmation.errors && (password_confirmation.dirty || password_confirmation.touched)" class="text text-left text-danger">
+                                    <div [hidden]="!password_confirmation.errors.required">
+                                        Bạn chưa nhập xác nhận mật khẩu
+                                    </div>
+                                    <div [hidden]="!password_confirmation.errors.pattern">
+                                        Xác nhận mật khẩu không khớp.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" [disabled]="!f.form.valid" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-user"></i> Đăng kí
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

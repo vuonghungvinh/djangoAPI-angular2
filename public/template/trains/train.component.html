@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 *ngIf="trains" class="title">Danh sách tàu</h1>
+            <p class="add"><a class="btn btn-info" routerLink="/trains/add">Thêm</a></p>
+            <hr class="line">
+            <div class="table-responsive">
+                <table *ngIf="trains" class="table table-bordered list-trains">
+                    <thead>
+                        <td>Tên</td>
+                        <td>Ngày tạo</td>
+                        <td style="width: 70px;">#</td>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let train of trains" >
+                            <td>{{train.name}}</td>
+                            <td>{{train.created_at | date: "yyyy-MM-dd HH:mm"}}</td>
+                            <td>
+                                <a title="Cập nhật" class="edit" [routerLink]="['/trains', train.id]">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                                <a title="Xoá" class="delete" (click)="delete(train.id, train.name)" href="javascript:void(0)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav *ngIf="sumpage > 1" aria-label="Page navigation" class="text-right">
+                  <ul class="pagination">
+                    <li [class.disabled]="currentpage == 1">
+                      <a href="javascript:void(0)" aria-label="Previous" (click)="prev()">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li *ngFor="let item of sumpage_arr" [class.active]="currentpage==item"><a href="javascript:void(0)" (click)="selectpage(item)">{{item}}</a></li>
+                    <li [class.disabled]="currentpage == sumpage">
+                      <a href="javascript:void(0)" aria-label="Next" (click)="next()">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+            <h3 *ngIf="!trains" class="title">Không có tàu nào</h3>
+        </div>
+    </div>
+</div>

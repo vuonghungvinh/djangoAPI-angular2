@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 *ngIf="address" class="title">Danh sách địa điểm</h1>
+            <p class="add"><a class="btn btn-info" routerLink="add">Thêm</a></p>
+            <hr class="line">
+            <div class="table-responsive">
+                <table *ngIf="address" class="table table-bordered list-trains">
+                    <thead>
+                        <td>ID</td>
+                        <td>Địa điểm.</td>
+                        <td style="width: 70px;">#</td>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let add of address" >
+                            <td>{{add.id}}</td>
+                            <td>{{add.name}}</td>
+                            <td>
+                                <a title="Cập nhật" class="edit" [routerLink]="['/address', add.id]">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                                <a title="Xoá" class="delete" (click)="delete(add.id, add.name)" href="javascript:void(0)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav *ngIf="sumpage > 1" aria-label="Page navigation" class="text-right">
+                  <ul class="pagination">
+                    <li [class.disabled]="currentpage == 1">
+                      <a href="javascript:void(0)" aria-label="Previous" (click)="prev()">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li *ngFor="let item of sumpage_arr" [class.active]="currentpage==item"><a href="javascript:void(0)" (click)="selectpage(item)">{{item}}</a></li>
+                    <li [class.disabled]="currentpage == sumpage">
+                      <a href="javascript:void(0)" aria-label="Next" (click)="next()">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+            <h3 *ngIf="!address" class="title">Không có địa điểm. nào</h3>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container addform">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">Cập nhật lịch trình</h1>
+            <hr class="line">
+            <div class="row">
+                <div class="col-md-8 col-sm-10 coll-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
+                    <form *ngIf="schedule" novalidate role="form" (submit)="update()" #f="ngForm">
+
+                        <div class="form-group text-left">
+                            <label for="train_id">Tàu</label>
+                            <select name="train_id" id="train_id" class="form-control" #train_id="ngModel" required [(ngModel)]="schedule.train_id">
+                                <option *ngFor="let train of trains" value="{{train.id}}">{{train.name}}</option>
+                            </select>
+                            <div *ngIf="train_id.errors && (train_id.dirty || train_id.touched)" class="text text-left text-danger">
+                                <div [hidden]="!train_id.errors.required">
+                                    Bạn chưa chọn tàu.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="name">Tên lịch trình</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Tên lịch trình" required #name="ngModel" [(ngModel)]="schedule.name">
+                            <div *ngIf="name.errors && (name.dirty || name.touched)" class="text text-danger text-left">
+                                <div [hidden]="!name.errors.required">
+                                    Bạn chưa nhập tên.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="from_address">Địa chỉ đi</label>
+                            <select name="from_address" id="from_address" class="form-control" #from_address="ngModel" [(ngModel)]="schedule.from_address" required>
+                                <option *ngFor="let add of address" value="{{add.id}}">{{add.name}}</option>
+                            </select>
+                            <div *ngIf="from_address.errors && (from_address.dirty || from_address.touched)" class="text text-danger text-left">
+                                <div [hidden]="!from_address.errors.required">
+                                    Bạn chưa nhập địa chỉ đi.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="to_address">Địa chỉ đến</label>
+                            <select name="to_address" id="to_address" class="form-control" #to_address="ngModel" [(ngModel)]="schedule.to_address" required>
+                                <option *ngFor="let add of address" value="{{add.id}}">{{add.name}}</option>
+                            </select>
+                            <div *ngIf="to_address.errors && (to_address.dirty || to_address.touched)" class="text text-danger text-left">
+                                <div [hidden]="!to_address.errors.required">
+                                    Bạn chưa nhập địa chỉ đến.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="from_datetime">T/g bắt đầu</label>
+                            <div class="input-group date">
+                                <input type="text" class="form-control" name="from_datetime" id="from_datetime" placeholder="T/g bắt đầu" required #from_datetime="ngModel" [(ngModel)]="schedule.from_datetime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <div *ngIf="from_datetime.errors && (from_datetime.dirty || from_datetime.touched)" class="text text-danger text-left">
+                                <div [hidden]="!from_datetime.errors.required">
+                                    Bạn chưa nhập thời gian đi.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="to_datetime">T/g đến</label>
+                            <div class="input-group date">
+                                <input [disabled] = "!schedule.from_datetime" type="text" class="form-control" name="to_datetime" id="to_datetime" placeholder="T/g đến"
+                                required #to_datetime="ngModel" [(ngModel)]="schedule.to_datetime">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <div *ngIf="to_datetime.errors && (to_datetime.dirty || to_datetime.touched)" class="text text-danger text-left">
+                                <div [hidden]="!to_datetime.errors.required">
+                                    Bạn chưa nhập thời gian đến.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="distance">Khoảng cách(KM)</label>
+                            <input type="text" class="form-control" maxlength="4" pattern="^[1-9][0-9]{0,}$" name="distance" id="distance" placeholder="Khoảng cách" required #distance="ngModel" [(ngModel)]="schedule.distance">
+                            <div *ngIf="distance.errors && (distance.dirty || distance.touched)" class="text text-danger text-left">
+                                <div [hidden]="!distance.errors.required">
+                                    Bạn chưa nhập khoảng cách.
+                                </div>
+                                <div [hidden]="!distance.errors.pattern">
+                                    Khoảng cách phải là số và lớn hơn 0.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label for="wagon_train">Số toa</label>
+                            <input type="text" class="form-control" pattern="^[1-9][0-9]{0,}$" name="wagon_train" id="wagon_train" placeholder="Số toa" required maxlength="4" #wagon_train="ngModel" [(ngModel)]="schedule.wagon_train">
+                            <div *ngIf="wagon_train.errors && (wagon_train.dirty || wagon_train.touched)" class="text text-left text-danger">
+                                <div [hidden]="!wagon_train.errors.required">
+                                     Bạn chưa nhập số toa.
+                                </div>
+                                <div [hidden]="!wagon_train.errors.pattern">
+                                    Số toa phải là số và lớn hơn 0.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-left">
+                            <label for="note">Mô tả</label>
+                            <textarea class="form-control" name="note" placeholder="Mô tả" id="note" rows="3" required #note="ngModel" [(ngModel)]="schedule.note"></textarea>
+                            <div *ngIf="note.errors && (note.dirty || note.touched)" class="text text-danger text-left">
+                                <div [hidden]="!note.errors.required">
+                                    Bạn chưa nhập ghi chú.
+                                </div>
+                            </div>
+                        </div>
+                        <button [disabled]="!f.form.valid" type="submit" class="btn btn-primary">Cập nhật</button>
+                        <a class="btn btn-danger" routerLink="/">Trở về</a>
+                    </form>
+                    <h1 *ngIf="!schedule">Lịch trình không tồn tại.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

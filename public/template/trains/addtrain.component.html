@@ -1,0 +1,25 @@
+<div class="container addform">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">Thêm tàu</h1>
+            <hr class="line">
+            <div class="row">
+                <div class="col-md-8 col-sm-10 coll-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
+                    <form novalidate role="form" (submit)="save(f.value)" #f="ngForm">
+
+                        <div class="form-group text-left">
+                            <label for="name">Tên tàu</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Tên tàu" required #name="ngModel" ngModel>
+                            <div *ngIf="name.errors && (name.dirty || name.touched)" class="text text-danger text-left">
+                                <div [hidden]="!name.errors.required">
+                                    Bạn chưa nhập tàu.
+                                </div>
+                            </div>
+                        </div>
+                        <button [disabled]="!f.form.valid" type="submit" class="btn btn-primary">Thêm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container addform">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">Cập nhật địa điểm</h1>
+            <hr class="line">
+            <div class="row">
+                <div class="col-md-8 col-sm-10 coll-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0">
+                    <form *ngIf="address" novalidate role="form" (submit)="update()" #f="ngForm">
+
+                        <div class="form-group text-left">
+                            <label for="name">Tên địa điểm</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Tên địa điểm" required #name="ngModel" [(ngModel)]="address.name">
+                            <div *ngIf="name.errors && (name.dirty || name.touched)" class="text text-danger text-left">
+                                <div [hidden]="!name.errors.required">
+                                    Bạn chưa nhập địa điểm.
+                                </div>
+                            </div>
+                        </div>
+                        <button [disabled]="!f.form.valid" type="submit" class="btn btn-primary">Cập nhật</button>
+                        <a class="btn btn-danger" routerLink="/address">Trở về</a>
+                    </form>
+                    <h1 *ngIf="!address">Địa điểm không tồn tại.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

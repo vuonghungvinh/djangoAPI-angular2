@@ -1,0 +1,144 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ng2-datepicker",
+        "scope": null,
+        "escapedName": "ng2-datepicker",
+        "name": "ng2-datepicker",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/var/www/html/2017/DoAn_laravel-angular2"
+    ]
+  ],
+  "_from": "ng2-datepicker@latest",
+  "_id": "ng2-datepicker@1.8.2",
+  "_inCache": true,
+  "_location": "/ng2-datepicker",
+  "_nodeVersion": "7.7.3",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/ng2-datepicker-1.8.2.tgz_1489621020430_0.17474160832352936"
+  },
+  "_npmUser": {
+    "name": "jkuri",
+    "email": "jkuri88@gmail.com"
+  },
+  "_npmVersion": "4.4.1",
+  "_phantomChildren": {
+    "symbol-observable": "1.0.4"
+  },
+  "_requested": {
+    "raw": "ng2-datepicker",
+    "scope": null,
+    "escapedName": "ng2-datepicker",
+    "name": "ng2-datepicker",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ng2-datepicker/-/ng2-datepicker-1.8.2.tgz",
+  "_shasum": "38723e9af113e41485d0c58680da96370b0a4667",
+  "_shrinkwrap": null,
+  "_spec": "ng2-datepicker",
+  "_where": "/var/www/html/2017/DoAn_laravel-angular2",
+  "author": {
+    "name": "Jan Kuri",
+    "email": "jkuri88@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jkuri/ng2-datepicker/issues"
+  },
+  "dependencies": {
+    "@angular/common": "^2.4.0",
+    "@angular/compiler": "^2.4.0",
+    "@angular/core": "^2.4.0",
+    "@angular/forms": "^2.4.0",
+    "@angular/http": "^2.4.0",
+    "@angular/platform-browser": "^2.4.0",
+    "@angular/platform-browser-dynamic": "^2.4.0",
+    "@angular/router": "^3.4.0",
+    "core-js": "^2.4.1",
+    "moment": "^2.17.1",
+    "ng2-slimscroll": "^1.2.6",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.7.6"
+  },
+  "description": "Angular2 Datepicker Component",
+  "devDependencies": {
+    "@angular/cli": "1.0.0-rc.0",
+    "@angular/compiler-cli": "^2.4.0",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "~6.0.60",
+    "angular-library-builder": "^1.3.1",
+    "bulma": "^0.3.2",
+    "codelyzer": "~2.0.0",
+    "jasmine-core": "~2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
+    "karma": "~1.4.1",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "karma-jasmine": "~1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "protractor": "~5.1.0",
+    "rimraf": "^2.6.1",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.4.2",
+    "typescript": "~2.0.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "38723e9af113e41485d0c58680da96370b0a4667",
+    "tarball": "https://registry.npmjs.org/ng2-datepicker/-/ng2-datepicker-1.8.2.tgz"
+  },
+  "gitHead": "ac6943df15a54a0f87c37cd8bd6d8ed02db18160",
+  "homepage": "https://github.com/jkuri/ng2-datepicker#readme",
+  "keywords": [
+    "angular",
+    "angular2",
+    "datepicker",
+    "date",
+    "component"
+  ],
+  "license": "MIT",
+  "main": "./lib-dist/ng2-datepicker.module.js",
+  "maintainers": [
+    {
+      "name": "ghetolay",
+      "email": "ghetolay@gmail.com"
+    },
+    {
+      "name": "jkuri",
+      "email": "jkuri88@gmail.com"
+    }
+  ],
+  "name": "ng2-datepicker",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkuri/ng2-datepicker.git"
+  },
+  "scripts": {
+    "build": "npm run css && ./node_modules/.bin/ngc -p tsconfig.build.json && rollup -c",
+    "build:cli": "ng build --aot",
+    "build:lib": "nglb --rootDir src/ng2-datepicker --outDir lib-dist",
+    "clean": "rimraf node_modules dist dist-lib",
+    "clean:install": "npm run clean && npm install",
+    "e2e": "ng e2e",
+    "lint": "ng lint",
+    "ng": "ng",
+    "prepublish": "npm run build:lib",
+    "start": "ng serve",
+    "test": "ng test"
+  },
+  "types": "./lib-dist/ng2-datepicker.module.d.ts",
+  "version": "1.8.2"
+}

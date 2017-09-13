@@ -1,0 +1,64 @@
+<div class="container listschedule">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 *ngIf="schedules">Danh sách lịch trình</h1>
+            <p class="add"><a class="btn btn-info" routerLink="schedule/add">Thêm</a></p>
+            <hr class="line">
+            <div class="table-responsive">
+                <table *ngIf="schedules" class="table table-bordered list-schedules">
+                    <thead>
+                        <td>Tên lịch trình</td>
+                        <td>Tên tàu</td>
+                        <td>Từ</td>
+                        <td>Đến</td>
+                        <td>T/g bắt đầu</td>
+                        <td>T/g kết thúc</td>
+                        <td>Khoảng cách(KM)</td>
+                        <td>Số toa</td>
+                        <td>Ghi chú</td>
+                        <td>Ngày tạo</td>
+                        <td style="width: 70px;">#</td>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let schedule of schedules">
+                            <td>{{schedule.name}}</td>
+                            <td><a [routerLink]="['/trains', schedule.train.id]">{{schedule.train.name}}</a></td>
+                            <td>{{schedule.from_address.name}}</td>
+                            <td>{{schedule.to_address.name}}</td>
+                            <td>{{schedule.from_datetime | date: "yyyy-MM-dd HH:mm"}}</td>
+                            <td>{{schedule.to_datetime | date: "yyyy-MM-dd HH:mm"}}</td>
+                            <td>{{schedule.distance}}</td>
+                            <td>{{schedule.wagon_train}}</td>
+                            <td>{{schedule.note}}</td>
+                            <td>{{schedule.created_at}}</td>
+                            <td>
+                                <a title="Sửa" class="edit" [routerLink]="['/schedule', schedule.id]">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                                <a title="Xoá" class="delete" (click)="delete(schedule.id, schedule.name)" href="javascript:void(0)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav *ngIf="sumpage > 1" aria-label="Page navigation" class="text-right">
+                  <ul class="pagination">
+                    <li [class.disabled]="currentpage == 1">
+                      <a href="javascript:void(0)" aria-label="Previous" (click)="prev()">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li *ngFor="let item of sumpage_arr" [class.active]="currentpage==item"><a href="javascript:void(0)" (click)="selectpage(item)">{{item}}</a></li>
+                    <li [class.disabled]="currentpage == sumpage">
+                      <a href="javascript:void(0)" aria-label="Next" (click)="next()">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+			<h1 *ngIf="!schedules">Không có lịch trình nào</h1>
+        </div>
+    </div>
+</div>
